@@ -64,7 +64,7 @@ module.exports = {
       name: "client",
       filename: "remoteEntry.js",
       remotes: {
-        App: `${process.env.CONTAINER_NAME}@${process.env.SVELTE_APP_REMOTE_URL}/remoteEntry.js`,
+        App: `${process.env.CONTAINER_NAME}@${process.env.REACT_APP_REMOTE_URL}/remoteEntry.js`,
       },
       shared: {
         ...deps,
