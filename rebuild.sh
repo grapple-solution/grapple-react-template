@@ -1,7 +1,7 @@
 if [[ -z "${REACT_APP_REMOTE_URL}" ]] && [[ "${REMOTE_ENTRY_URL}" != "" ]]; then
     export REACT_APP_REMOTE_URL=$(echo ${REMOTE_ENTRY_URL} | sed "s,/remoteEntry.js,,g")
 fi
-
+export REACT_APP_REMOTE_URL=$(echo ${REACT_APP_REMOTE_URL} | sed "s,/remoteEntry.js,,g")
 if [[ -z "${CONTAINER_NAME}" ]]; then
     export CONTAINER_NAME=$(curl -s -k $REACT_APP_REMOTE_URL/dashboard.json | jq -r '.name')
     echo "CONTAINER_NAME: ${CONTAINER_NAME}"
