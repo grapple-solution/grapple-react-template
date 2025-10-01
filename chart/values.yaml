@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-
+stage: prd
 env: {}
 # configuration for grapple ApplicationSet (gras)
 gras-deploy:
@@ -139,10 +139,10 @@ gras:
     custommodules: []
 replicaCount: 1
 image:
-  repository: grpl/grapple-template-pr
+  repository: grpl/grapple-react-template
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1.45.pr-33"
+  tag: "0.1.0.dev-057b0e2"
 imagetest:
   repository: apptest
   pullPolicy: IfNotPresent
