@@ -139,10 +139,10 @@ gras:
     custommodules: []
 replicaCount: 1
 image:
-  repository: grpl/grapple-react-template
+  repository: grpl/grapple-template-pr
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1.0.dev-057b0e2"
+  tag: "0.1.45.pr-33"
 imagetest:
   repository: apptest
   pullPolicy: IfNotPresent
