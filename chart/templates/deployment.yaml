@@ -38,7 +38,7 @@ spec:
             - name: REMOTE_ENTRY_URL
               valueFrom:
                 configMapKeyRef:
-                  name: "{{ .Release.Namespace }}-{{ $.Release.Namespace }}-{{ .Release.Name }}-gruim-muim"
+                  name: "{{ .Release.Namespace }}-{{ $.Release.Namespace }}-{{ .Release.Name }}-gras-gruim-muim"
                   key: remoteentry
           {{- if .Values.env }}
             {{- toYaml .Values.env | nindent 12 }}
@@ -49,7 +49,7 @@ spec:
             - name: SVELTE_APP_REMOTE_URL
               valueFrom:
                 configMapKeyRef:
-                  name: "{{ .Release.Namespace }}-{{ $.Release.Namespace }}-{{ .Release.Name }}-gruim-muim"
+                  name: "{{ .Release.Namespace }}-{{ $.Release.Namespace }}-{{ .Release.Name }}-gras-gruim-muim"
                   key: remoteentry
               {{- end }}
             {{- end }}
