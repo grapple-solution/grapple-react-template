@@ -139,13 +139,13 @@ gras:
     custommodules: []
 replicaCount: 1
 image:
-  repository: grpl/grapple-template-pr
+  repository: grpl/grapple-react-template-pr
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1.45.pr-33"
+  tag: "0.1.0.pr-9999-00d7200"
 imagetest:
-  repository: apptest
-  pullPolicy: IfNotPresent
+  repository: grpl/grapple-template-test
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 imagePullSecrets: []
@@ -174,6 +174,10 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+lookup:
+  enabled: true
+  domain: MYDOMAIN.grpl.io
+  sslissuer: MYISSUER
 ingress:
   enabled: true
   className: ""

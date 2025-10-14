@@ -2,15 +2,15 @@ version: v2beta1
 name: grapple-template
 vars:
   IMAGE_REGISTRY: "grpl"
-  IMAGE_REPO: "grapple-template"
+  IMAGE_REPO: "grapple-react-template-pr"
 # This is a list of `pipelines` that DevSpace can execute (you can define your own)
 functions:
   patch-values-file: |-
-      task patch-values-file
+    task patch-values-file
   patch-values-file-patches-only: |-
-      task patch-values-file-patches-only
+    task patch-values-file-patches-only
   reset-values-file: |-
-      task reset-values-file
+    task reset-values-file
 pipelines:
   build: |-
     build_images --all
@@ -51,8 +51,13 @@ images:
   app:
     image: "${IMAGE_REGISTRY}/${IMAGE_REPO}:devspace"
     dockerfile: ./Dockerfile
-    buildKit: # {} # implemented for bitbucket pipeline with the patch at the end of this file
-      args: [--platform, 'linux/amd64,linux/arm64']
+    # buildKit: # {} # implemented for bitbucket pipeline with the patch at the end of this file
+    #   args: [--platform, 'linux/amd64,linux/arm64']
+  test:
+    image: "${IMAGE_REGISTRY}/${IMAGE_REPO}-test:devspace"
+    dockerfile: ./Dockerfile.test
+    # buildKit: # {} # implemented for bitbucket pipeline with the patch at the end of this file
+    #   args: [--platform, 'linux/amd64,linux/arm64']
   # data:
   #   image: "${IMAGE_REGISTRY}/${IMAGE_REPO}-data:devspace"
   #   dockerfile: ./Dockerfile.data
@@ -176,7 +181,6 @@ commands:
     command: |-
       devspace enter --label-selector app.kubernetes.io/name=grapi npm run build && \
       devspace enter --label-selector app.kubernetes.io/name=grapi npm run migrate
-
 # Define dependencies to other projects with a devspace.yaml
 # dependencies:
 #   api:
