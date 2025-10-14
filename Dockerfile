@@ -29,7 +29,7 @@ WORKDIR /app
 # COPY --from=build /app/dist /usr/share/nginx/html
 COPY *.js ./
 COPY *.json ./
-COPY src/ /app/src/
+COPY src /app/src
 
 RUN pnpm i
 
@@ -39,3 +39,4 @@ COPY rebuild.sh rebuild.sh
 # Container startup command for the web server (nginx in this case)
 # CMD ["nginx", "-g", "daemon off;"]
 CMD './rebuild.sh'
+
