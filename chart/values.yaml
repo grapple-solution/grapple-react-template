@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-
+stage: prd
 env: {}
 # configuration for grapple ApplicationSet (gras)
 gras-deploy:
@@ -100,11 +100,11 @@ grases:
     #           type: string
     #         creditLimit:
     #           type: number
-    repositories:
-      - name: classicmodelsid
-        spec:
-          datasource: classicmodelsid
-          model: clients
+    # repositories:
+    #   - name: classicmodelsid
+    #     spec:
+    #       datasource: classicmodelsid
+    #       model: clients
     # relations:
     #   - name: "employees"
     #     spec:
