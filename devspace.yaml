@@ -197,3 +197,15 @@ profiles:
         path: images.jcs.buildKit
       - op: remove
         path: images.data.buildKit
+  - name: remove-buildkit-on-linux
+    activation:
+      - vars:
+          DEVSPACE_LINUX: "true"
+    patches:
+      - op: remove
+        path: images.mbd-cb.buildKit
+      - op: remove
+        path: images.test.buildKit
+      - op: remove
+        path: images.data.buildKit
+
