@@ -7,10 +7,14 @@ env: {}
 # configuration for grapple ApplicationSet (gras)
 gras-deploy:
   enabled: false
-gras:
-  enabled: true
-  gras: {}
-  grapi:
+grases:
+  gras:
+    enabled: true
+    gras: {}
+    grapi:
+      postpatches:
+        - name: migrate-db
+          content: bnBtIHJ1biBtaWdyYXRl
     # beimagetag: "v0.130"
     beimage: grpl/grapi
     beimagetag: 0.2.9

@@ -6,14 +6,14 @@ env:
 # - name: DEV
 #   value: "true"
 
-
-gras: 
-  # gras: 
-  #   ssl: false
-  grapi:
-    ssl: false
-  gruim:
-    ssl: false
+grases:
+  gras: 
+    # gras: 
+    #   ssl: false
+    grapi:
+      ssl: false
+    gruim:
+      ssl: false
 
 
 ingress:
