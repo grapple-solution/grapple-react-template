@@ -12,9 +12,7 @@ grases:
     enabled: true
     gras: {}
     grapi:
-      postpatches:
-        - name: migrate-db
-          content: bnBtIHJ1biBtaWdyYXRl
+      postpatches: []
     # beimagetag: "v0.130"
     beimage: grpl/grapi
     beimagetag: 0.2.9
