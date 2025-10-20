@@ -194,7 +194,7 @@ profiles:
           CI: true
     patches:
       - op: remove
-        path: images.jcs.buildKit
+        path: images.app.buildKit
       - op: remove
         path: images.data.buildKit
   - name: remove-buildkit-on-linux
@@ -203,7 +203,7 @@ profiles:
           DEVSPACE_LINUX: "true"
     patches:
       - op: remove
-        path: images.mbd-cb.buildKit
+        path: images.app.buildKit
       - op: remove
         path: images.test.buildKit
       - op: remove
