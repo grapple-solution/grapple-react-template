@@ -10,7 +10,11 @@ spec:
     spec:
       {{- if $gras.gras }}
       {{ $gras.gras | toYaml | nindent 6 }}
+      {{- if $gras.gras }}
+      {{ $gras.gras | toYaml | nindent 6 }}
       {{- end }}
+      {{- if $gras.grapi }}
+      {{ $gras.grapi | toYaml | nindent 6 }}
       {{- if $gras.grapi }}
       {{ $gras.grapi | toYaml | nindent 6 }}
       {{- end }}
@@ -19,7 +23,14 @@ spec:
     spec:
       {{- if $gras.gras }}
       {{ $gras.gras | toYaml | nindent 6 }}
+      {{- if $gras.gras }}
+      {{ $gras.gras | toYaml | nindent 6 }}
       {{- end }}
+      {{- if $gras.gruim }}
+      {{ $gras.gruim | toYaml | nindent 6 }}
+      {{- end }}
+---
+  {{- end }}
       {{- if $gras.gruim }}
       {{ $gras.gruim | toYaml | nindent 6 }}
       {{- end }}

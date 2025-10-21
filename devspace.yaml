@@ -19,6 +19,7 @@ pipelines:
   # This is the pipeline for the main command: `devspace dev` (or `devspace run-pipeline dev`)
   dev:
     run: |-
+      export STAGE=devspace
       patch-values-file-patches-only
       run_dependencies --all       # 1. Deploy any projects this project needs (see "dependencies")
       ensure_pull_secrets --all    # 2. Ensure pull secrets
@@ -39,6 +40,7 @@ pipelines:
   # You can run this pipeline via `devspace deploy` (or `devspace run-pipeline deploy`)
   deploy:
     run: |-
+      export STAGE=devspace
       patch-values-file
       run_dependencies --all                            # 1. Deploy any projects this project needs (see "dependencies")
       ensure_pull_secrets --all                         # 2. Ensure pull secrets
@@ -94,6 +96,7 @@ dev:
           - data
           - dist
           - grases
+          - grases
         uploadExcludeFile: .dockerignore
     # Open a terminal and use the following command to start it
     terminal:
@@ -129,6 +132,7 @@ dev:
         value: "--dns-result-order=ipv4first"
     sync:
       - path: ./grases/gras/gruim/custommodules/.:/usr/src/app/src/lib/custom-components/.
+      - path: ./grases/gras/gruim/custommodules/.:/usr/src/app/src/lib/custom-components/.
         # - name: OPENAPI_URL
         #   value: "http://dev-app-grapi.grpl-cli.grapple-demo.com/openapi.json"
     # restartHelper:
@@ -155,6 +159,7 @@ dev:
     # TODO: path to the controller directory
     sync:
       # - path: ./grapi/controllers/:/home/node/app/src/controllers/
+      - path: ./grases/gras/grapi/injections/:/home/node/app/src/injections/
       - path: ./grases/gras/grapi/injections/:/home/node/app/src/injections/
     # restartHelper:
     #   inject: true
