@@ -20,10 +20,10 @@ spec:
         {{- if .Values.lookup.enabled }}
         {{- $secret := (lookup "v1" "Secret" "grpl-system" "grsf-config" ) }}
         - name: BASE_URL
-          value: "{{ $prot }}{{ .Release.Namespace }}.{{ index $secret.data "GRAPPLE_DNS" | b64dec }}"
+          value: "{{ $prot }}{{ .Release.Namespace }}-{{ $fullName }}.{{ index $secret.data "GRAPPLE_DNS" | b64dec }}"
         {{- else }}
         - name: BASE_URL
-          value: "{{ $prot }}{{ .Release.Namespace }}.{{ .Values.lookup.domain }}"
+          value: "{{ $prot }}{{ .Release.Namespace }}-{{ $fullName }}.{{ .Values.lookup.domain }}"
         {{- end }}
       command: 
         - sh
@@ -41,10 +41,10 @@ spec:
         {{- if .Values.lookup.enabled }}
         {{- $secret := (lookup "v1" "Secret" "grpl-system" "grsf-config" ) }}
         - name: BASE_URL
-          value: "{{ $prot }}{{ .Release.Namespace }}.{{ index $secret.data "GRAPPLE_DNS" | b64dec }}"
+          value: "{{ $prot }}{{ .Release.Namespace }}-{{ $fullName }}.{{ index $secret.data "GRAPPLE_DNS" | b64dec }}"
         {{- else }}
         - name: BASE_URL
-          value: "{{ $prot }}{{ .Release.Namespace }}.{{ .Values.lookup.domain }}"
+          value: "{{ $prot }}{{ .Release.Namespace }}-{{ $fullName }}.{{ .Values.lookup.domain }}"
         {{- end }}
         {{- if .Values.env }}
         {{- toYaml .Values.env | nindent 8 }}

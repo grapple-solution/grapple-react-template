@@ -509,6 +509,12 @@ tasks:
         yq e -i '.image.repository = "{{.IMAGE_REGISTRY}}/{{.IMAGE_REPO}}"' {{.VALUES_YAML_PATH}}
         yq e -i '.image.tag = "{{.TAG}}"' {{.VALUES_YAML_PATH}}
 
+
+        # patch test image:
+        yq e -i '.imagetest.repository = "{{.IMAGE_REGISTRY}}/{{.IMAGE_REPO}}-test"' {{.VALUES_YAML_PATH}}
+        yq e -i '.imagetest.tag = "{{.TAG}}"' {{.VALUES_YAML_PATH}}
+
+
         VALUES_STAGE=$(echo "{{.VALUES_YAML_PATH}}" | sed "s,.yaml,-{{.STAGE}}.yaml,g")
         echo "VALUES_STAGE: ${VALUES_STAGE}"
         if [ -f ${VALUES_STAGE} ]; then
@@ -547,6 +553,11 @@ tasks:
         # patch the image:
         yq e -i '.image.repository = "{{.IMAGE_REGISTRY}}/{{.IMAGE_REPO}}"' {{.VALUES_YAML_PATH}}
         yq e -i '.image.tag = "{{.TAG}}-{{.GIT_HASH}}"' {{.VALUES_YAML_PATH}}
+
+
+        # patch test image:
+        yq e -i '.imagetest.repository = "{{.IMAGE_REGISTRY}}/{{.IMAGE_REPO}}-test"' {{.VALUES_YAML_PATH}}
+        yq e -i '.imagetest.tag = "{{.TAG}}-{{.GIT_HASH}}"' {{.VALUES_YAML_PATH}}
 
         # run dependency update in order to prevent issue on the first build
         helm dep up chart
