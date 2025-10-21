@@ -8,7 +8,7 @@ env: {}
 gras-deploy:
   enabled: false
 grases:
-  - name: gras
+  gras:
     enabled: true
     gras: {}
     grapi:
@@ -140,10 +140,10 @@ grases:
       custommodules: []
 replicaCount: 1
 image:
-  repository: grpl/grapple-template-pr
+  repository: grpl/grapple-react-template-pr
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1.45.pr-33"
+  tag: "0.1.0.pr-9999-7794b24"
 imagetest:
   repository: apptest
   pullPolicy: IfNotPresent
