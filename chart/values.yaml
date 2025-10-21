@@ -182,7 +182,7 @@ lookup:
 ingress:
   enabled: true
   className: ""
-  ssl: false
+  ssl: true
   annotations: {}
   # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
