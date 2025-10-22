@@ -223,7 +223,6 @@ tasks:
             yq -i ".grases.${GRAS_NAME}.grapi.${group_name} += [{\"name\": \"${injection_name}\", \"content\": \"${base64_content}\"}]" "{{.VALUES_YAML_PATH}}"
           done
         done
-        done
 
   reset-values-file:
     desc: Gather and encode backend (grapi) and frontend (gruim) injections 
