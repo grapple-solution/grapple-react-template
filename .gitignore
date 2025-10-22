@@ -141,3 +141,6 @@ target/
 # Ignore grapple specific stuff
 gruim/custommodules/list.json
 grapi/controllers/index.ts
+
+# test results
+test-results/*

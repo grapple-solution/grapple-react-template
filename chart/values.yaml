@@ -143,10 +143,10 @@ image:
   repository: grpl/grapple-react-template-pr
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1.0.pr-9999-7794b24"
+  tag: "0.1.0.pr-9999-fa134b8"
 imagetest:
-  repository: apptest
-  pullPolicy: IfNotPresent
+  repository: grpl/grpl-react-template-test
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 imagePullSecrets: []
@@ -175,9 +175,14 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+lookup:
+  enabled: true
+  domain: MYDOMAIN.grpl.io
+  sslissuer: MYISSUER
 ingress:
   enabled: true
   className: ""
+  ssl: true
   annotations: {}
   # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
