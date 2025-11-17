@@ -11,6 +11,41 @@ functions:
     task patch-values-file-patches-only
   reset-values-file: |-
     task reset-values-file
+  wait-for-deployment: |-
+    #!/bin/sh
+    set -e
+    
+    if [ -z "$1" ]; then
+      echo "Error: Resource name is required"
+      echo "Usage: wait-for-deployment <resource-name> [timeout-seconds]"
+      exit 1
+    fi
+    
+    RESOURCE_NAME="$1"
+    TIMEOUT="${2:-300}"
+    
+    echo "Waiting for deployment with resource name: $RESOURCE_NAME"
+    echo "Will wait for max of $TIMEOUT seconds"
+    
+    counter=0
+    
+    while ! kubectl get deploy -l grpl.io/resourceName=$RESOURCE_NAME 2>/dev/null | grep -q "$RESOURCE_NAME"; do
+      counter=$((counter + 1))
+      
+      if [ $counter -ge $TIMEOUT ]; then
+        echo "Timeout waiting for deployment: $RESOURCE_NAME"
+        exit 1
+      fi
+      
+      # Print message every 15 seconds
+      if [ $((counter % 15)) -eq 0 ]; then
+        echo "Waiting for deployment '$RESOURCE_NAME' - ${counter}s elapsed (timeout: ${TIMEOUT}s)"
+      fi
+      
+      sleep 1
+    done
+    echo ""
+    echo "Deployment $RESOURCE_NAME is ready"
 pipelines:
   build: |-
     build_images --all
@@ -29,9 +64,7 @@ pipelines:
       # TODO: find a solution for windows (while is not working on windows)...
       sleep 10
       reset-values-file
-      sleep 10
-      # while ! kubectl get deploy -l app.kubernetes.io/name=grapi 2>/dev/null | grep grapi; do echo -n \".\"; sleep 1; done
-      # kubectl get deploy -l app.kubernetes.io/name=grapi --for=condition=available
+      wait-for-deployment app-gras-grapi
       start_dev grapi
       start_dev gruim
       if grpl > /dev/null 2>&1; then grpl gruim rebuild; fi
@@ -68,6 +101,7 @@ deployments:
   app:
     # This deployment uses `helm` but you can also define `kubectl` deployments or kustomizations
     helm:
+      releaseName: app
       # We are deploying this project with the Helm chart you provided
       chart:
         name: ./chart
@@ -215,4 +249,3 @@ profiles:
         path: images.test.buildKit
       - op: remove
         path: images.data.buildKit
-
