@@ -27,8 +27,8 @@ WORKDIR /app
 
 # Copy built files from the build stage to the production image
 # COPY --from=build /app/dist /usr/share/nginx/html
-COPY *.js .
-COPY *.json .
+COPY *.js ./
+COPY *.json ./
 COPY src /app/src
 
 RUN pnpm i
@@ -39,3 +39,4 @@ COPY rebuild.sh rebuild.sh
 # Container startup command for the web server (nginx in this case)
 # CMD ["nginx", "-g", "daemon off;"]
 CMD './rebuild.sh'
+
