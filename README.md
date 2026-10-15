@@ -4,7 +4,7 @@
 
 This project provides a standard development environment based on **Grapple** and **React**.
 
-# Working with Grapi and Gruim
+# Working with grapi and gruim
 
 The backend uses the **grapi** structure, built on **Loopback**, to define services, controllers, and models.  
 You can explore and extend the available structures using:
@@ -18,18 +18,13 @@ Once the development environment is started with `grpl dev` and the pods are suc
 - **OpenAPI and Swagger UI** ([http://localhost:3000](http://localhost:3000))  
   Browse and test your API endpoints using Swagger.
 
-- **Admin Interface (Gruim Part)** ([http://localhost:8000](http://localhost:8000))  
+- **Admin Interface (gruim)** ([http://localhost:8080](http://localhost:8080))
   Manage and configure your data through the admin UI.  
-  Create custom components under the `custommodules` directory.  
-  After adding components, rebuild Gruim with:
-
-  ```bash
-  grpl gruim rebuild
-  ```
+  Create custom components under `grases/gras/gruim/custommodules`.
 
 - **Client Interface** ([http://localhost:4000](http://localhost:4000))  
   Develop and manage your React frontend components.  
-  You can import components from `custommodels` or define new ones under the `src` directory.
+  You can import generated modules or define new components under the `src` directory.
 
 ## Starting the Development Environment
 
@@ -80,8 +75,8 @@ grpl dev
 ## working with the front-end application
 
 ### run the application locally
-    pnpm i 
-    pnpm start
+    pnpm i
+    pnpm dev
 
 > [!TIP]
 > run:
@@ -120,12 +115,11 @@ http://localhost:8080
         ├── index.html          -> 
         ├── index.ts            -> 
         ├── App.jsx          -> 
-    ├── grapi               -> grapi (grapple API) injections
+    ├── grases/gras/grapi   -> grapi (grapple API) injections
         ├── controllers          -> grapi controllers
             ├── ping2.controller.ts     -> example controller injection
-    ├── gruim               -> gruim (grapple UI modules) injections
-        ├── shared          -> gruim shared UI modules 
-            ├── *.jsx    -> example gruim UI module injection
+    ├── grases/gras/gruim   -> gruim custom modules
+        ├── custommodules   -> optional gruim modules
     ├── chart               -> helm chart directory ==> https://helm.sh/docs/topics/charts/
         ├── values.yaml         -> the default configuration values for this chart
         ├── values*.yaml        -> values files for different profiles / environments
@@ -138,7 +132,7 @@ http://localhost:8080
     ├── .gitignore          -> Specifies intentionally untracked files to ignore
     ├── Dockerfile          -> Dockerfile is a text document containing all the commands the user requires to call on the command line to assemble an image.
     ├── Dockerfile.test     -> Dockerfile for the test cases (optional)
-    ├── package.json        -> Dockerfile for the test cases (optional)
+    ├── package.json        -> frontend package configuration
     ├── README.md           -> this file
     ├── skaffold.yaml       -> Skaffold contains configuration for all phases of the application delivery process
     ├── webpack.config.js   -> webpack configuration file ==> https://webpack.js.org/concepts/configuration/
@@ -147,6 +141,10 @@ http://localhost:8080
 ## environment variables
 
 APP: define the name of the APP
-NAMESPACE: define a namespace extension to the deplyoment
+NAMESPACE: define a namespace extension to the deployment
 
 SKAFFOLD_CACHE_ARTIFACTS: "false" - to disable cached artifacts
+
+## checks
+
+    pnpm test
