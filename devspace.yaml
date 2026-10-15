@@ -7,6 +7,20 @@ vars:
   APP_NAME: "grapple-react-template"
   IMAGE_REGISTRY: "grpl"
   IMAGE_REPO: "grapple-react-template"
+
+  APP_IMAGE: "${IMAGE_REGISTRY}/${IMAGE_REPO}"
+  TEST_IMAGE: "${IMAGE_REGISTRY}/${IMAGE_REPO}-test"
+  DATA_IMAGE: "${IMAGE_REGISTRY}/${IMAGE_REPO}-data" # currently not being used
+  MODULES_IMAGE: "${IMAGE_REGISTRY}/${IMAGE_REPO}-modules"
+
+  APP_DOCKERFILE: "Dockerfile"
+  TEST_DOCKERFILE: "Dockerfile.test"
+  DATA_DOCKERFILE: "Dockerfile.data" # currently not being used
+  MODULES_DOCKERFILE: "Dockerfile.modules"
+
+  # here you need to define the images to build and their coresponding dockerfiles
+  IMAGES: "${APP_IMAGE}:${TAG} ${TEST_IMAGE}:${TAG} ${MODULES_IMAGE}:${TAG}"
+  DOCKERFILES: "${APP_DOCKERFILE} ${TEST_DOCKERFILE} ${MODULES_DOCKERFILE}"
 # This is a list of `pipelines` that DevSpace can execute (you can define your own)
 functions:
   patch-values-file: |-
@@ -95,8 +109,8 @@ images:
     buildKit: # {} # implemented for bitbucket pipeline with the patch at the end of this file
       args: [--platform, 'linux/amd64,linux/arm64']
   modules:
-    image: "${IMAGE_REGISTRY}/${IMAGE_REPO}-modules:devspace"
-    dockerfile: ./Dockerfile.modules
+    image: "${MODULES_IMAGE}:devspace"
+    dockerfile: ${MODULES_DOCKERFILE}
     buildKit:
       args: [--platform, 'linux/amd64,linux/arm64']
   # data:
